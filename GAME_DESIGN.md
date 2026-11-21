@@ -12,7 +12,12 @@
   teleporting back to spawn.
 - Rule: the **server** checks and deducts the coins, then grants the helicopter.
   The client can never grant itself one.
-- Open: helicopter list, names and coin prices.
+- **Price = exactly what the helicopter earns in 12 seconds** (Income x 12).
+- Helicopters (real models): R22 (1/s, 12), Bell 206 (2, 24), H125 (4, 48), UH-1 Huey (8, 96),
+  H145 (15, 180), UH-60 Black Hawk (30, 360), AW139 (55, 660), AH-64 Apache (100, 1200),
+  Mi-24 Hind (180, 2160), CH-47 Chinook (320, 3840), CH-53K King Stallion (600, 7200),
+  Mi-26 Halo (1100, 13200).
+- Code lives in `scripts/` (copies of what is in the Studio place).
 
 ## Enemy
 - Enemy helicopters chase and attack players to stop them stealing helicopters.

@@ -6,14 +6,13 @@
 3. Spend money on upgrades: **Speed**, **Health**, **Defense (flares)**.
 4. Push further through the levels.
 
-## Stealing costs Robux
-- Helicopters are stolen **from the map**, and each steal costs a tiny amount of Robux
-  (one developer product per helicopter).
+## Stealing costs coins (not Robux)
+- Helicopters are stolen **from the map**, and each steal costs **coins** (in-game money).
 - Why: stops a cheater teleporting to the end, grabbing a helicopter for free, and
   teleporting back to spawn.
-- Rule: the **server grants the helicopter only after a confirmed purchase**
-  (MarketplaceService.ProcessReceipt). The client can never grant itself one.
-- Open: helicopter list, names and Robux prices.
+- Rule: the **server** checks and deducts the coins, then grants the helicopter.
+  The client can never grant itself one.
+- Open: helicopter list, names and coin prices.
 
 ## Enemy
 - Enemy helicopters chase and attack players to stop them stealing helicopters.

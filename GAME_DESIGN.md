@@ -1,10 +1,19 @@
-# Heli Empire - Game Design (draft v2)
+# Heli Empire - Game Design (draft v3)
 
 ## Core loop
 1. Steal / collect helicopters on the map (steal-an-egg style map with levels).
 2. Earn money from stolen helicopters.
 3. Spend money on upgrades: **Speed**, **Health**, **Defense (flares)**.
 4. Push further through the levels.
+
+## Stealing costs Robux
+- Helicopters are stolen **from the map**, and each steal costs a tiny amount of Robux
+  (one developer product per helicopter).
+- Why: stops a cheater teleporting to the end, grabbing a helicopter for free, and
+  teleporting back to spawn.
+- Rule: the **server grants the helicopter only after a confirmed purchase**
+  (MarketplaceService.ProcessReceipt). The client can never grant itself one.
+- Open: helicopter list, names and Robux prices.
 
 ## Enemy
 - Enemy helicopters chase and attack players to stop them stealing helicopters.

@@ -82,3 +82,4 @@
 - Level scales range, fire rate, homing missile speed/turn and damage (8 → 36).
 - Spawned helicopters bob up and down client-side (HeliHover).
 - Launchers stand on the roof strips (y=45 body); missiles ignore walls/floor and only explode within 4 studs of a player.
+- Launchers only attack in the Common area (AreaZones CommonZone). LobbyZone (around the spawn, Area=Lobby) and all other areas are missile-free.

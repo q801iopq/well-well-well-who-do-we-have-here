@@ -28,7 +28,7 @@ local function show(name)
 	if not lbl then return end
 	lbl.Text = name .. " Area"
 	local r = Config.RarityByName[name]
-	if r then lbl.TextColor3 = r.Color end
+	lbl.TextColor3 = r and r.Color or Color3.fromRGB(255, 255, 255)
 end
 
 while true do

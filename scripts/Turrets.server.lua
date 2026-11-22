@@ -16,6 +16,19 @@ local BLAST_RADIUS = 9
 local MISSILE_LIFETIME = 6
 local HIT_RADIUS = 4
 
+-- Launchers only attack players standing in the Common area. Lobby and every other area is safe.
+local zones = workspace:WaitForChild("AreaZones")
+local function inDanger(pos)
+	for _, z in zones:GetChildren() do
+		if z:IsA("BasePart") and z:GetAttribute("Area") == "Common" then
+			local rel = z.CFrame:PointToObjectSpace(pos)
+			local h = z.Size / 2
+			if math.abs(rel.X) <= h.X and math.abs(rel.Y) <= h.Y and math.abs(rel.Z) <= h.Z then return true end
+		end
+	end
+	return false
+end
+
 local missileFolder = Instance.new("Folder")
 missileFolder.Name = "Missiles"
 missileFolder.Parent = workspace
@@ -37,7 +50,7 @@ local function explode(pos, damage)
 		local char = plr.Character
 		local root = char and char:FindFirstChild("HumanoidRootPart")
 		local hum = char and char:FindFirstChildOfClass("Humanoid")
-		if root and hum and hum.Health > 0 and (root.Position - pos).Magnitude <= BLAST_RADIUS then
+		if root and hum and hum.Health > 0 and (root.Position - pos).Magnitude <= BLAST_RADIUS and inDanger(root.Position) then
 			hum:TakeDamage(damage)
 		end
 	end
@@ -70,7 +83,7 @@ local function nearestTarget(pos, range)
 		local char = plr.Character
 		local root = char and char:FindFirstChild("HumanoidRootPart")
 		local hum = char and char:FindFirstChildOfClass("Humanoid")
-		if root and hum and hum.Health > 0 then
+		if root and hum and hum.Health > 0 and inDanger(root.Position) then
 			local d = (root.Position - pos).Magnitude
 			if d <= bestD then best, bestD = root, d end
 		end
@@ -116,7 +129,7 @@ RunService.Heartbeat:Connect(function(dt)
 			local hit = false
 			for _, plr in Players:GetPlayers() do
 				local root = plr.Character and plr.Character:FindFirstChild("HumanoidRootPart")
-				if root and (root.Position - newPos).Magnitude <= HIT_RADIUS then hit = true break end
+				if root and (root.Position - newPos).Magnitude <= HIT_RADIUS and inDanger(root.Position) then hit = true break end
 			end
 			if hit then
 				explode(newPos, m.cfg.damage)

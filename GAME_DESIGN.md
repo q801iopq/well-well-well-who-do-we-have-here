@@ -76,3 +76,8 @@
 - 10 pads in Workspace.HeliSpawns, each with a `Rarity` attribute. Columns left→right (x=-480..-120): Mythic, Epic, Rare, Uncommon, Common (pads 1/6 Mythic, 5/10 Common).
 - `HeliSpawner` spawns a random model of the pad's rarity from ServerStorage.HeliModels; 120 s lifetime, 5 s respawn.
 - `AreaDisplay` (client) shows "<Rarity> Area" on Hud.Area using Workspace.AreaZones.
+
+## Turrets & hover (v5)
+- Workspace.Turrets: 10 concrete box turrets with 4 holes each, `Level` 1-5 by area (Common=1 ... Mythic=5), 2 per area (north/south edge).
+- Level scales range, fire rate, homing missile speed/turn and damage (8 → 36).
+- Spawned helicopters bob up and down client-side (HeliHover).

@@ -6,11 +6,11 @@ local RunService = game:GetService("RunService")
 local turrets = workspace:WaitForChild("Turrets")
 
 local LEVELS = {
-	[1] = {range = 70,  interval = 4.5, speed = 35,  damage = 8,  turn = 0.8},
-	[2] = {range = 85,  interval = 3.8, speed = 50,  damage = 12, turn = 1.2},
-	[3] = {range = 100, interval = 3.2, speed = 68,  damage = 18, turn = 1.6},
-	[4] = {range = 115, interval = 2.5, speed = 88,  damage = 26, turn = 2.0},
-	[5] = {range = 130, interval = 1.8, speed = 110, damage = 36, turn = 2.6},
+	[1] = {range = 70,  interval = 4.5, speed = 35,  damage = 8,  turn = 2.4},
+	[2] = {range = 85,  interval = 3.8, speed = 50,  damage = 12, turn = 2.8},
+	[3] = {range = 100, interval = 3.2, speed = 68,  damage = 18, turn = 2.4},
+	[4] = {range = 115, interval = 2.5, speed = 88,  damage = 26, turn = 2.8},
+	[5] = {range = 130, interval = 1.8, speed = 110, damage = 36, turn = 3.2},
 }
 local BLAST_RADIUS = 9
 local MISSILE_LIFETIME = 6
@@ -52,7 +52,7 @@ local function fire(turret, hole, cfg, target)
 	p.CanCollide = false
 	p.CanQuery = false
 	p.CanTouch = false
-	local dir = turret.PrimaryPart.CFrame.LookVector
+	local dir = hole.CFrame.LookVector -- launches along the tilted rack
 	p.CFrame = CFrame.lookAt(hole.Position, hole.Position + dir)
 	p.Parent = missileFolder
 	table.insert(missiles, {part = p, dir = dir, target = target, cfg = cfg, born = os.clock()})
@@ -91,7 +91,7 @@ RunService.Heartbeat:Connect(function(dt)
 			if now >= s.next then
 				s.next = now + cfg.interval
 				local hole = t:FindFirstChild("Hole" .. s.hole)
-				s.hole = s.hole % 4 + 1
+				s.hole = s.hole % 6 + 1
 				if hole then fire(t, hole, cfg, target) end
 			end
 		end

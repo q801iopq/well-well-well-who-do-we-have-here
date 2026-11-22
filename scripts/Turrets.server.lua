@@ -14,6 +14,7 @@ local LEVELS = {
 }
 local BLAST_RADIUS = 9
 local MISSILE_LIFETIME = 6
+local HIT_RADIUS = 4
 
 local missileFolder = Instance.new("Folder")
 missileFolder.Name = "Missiles"
@@ -110,9 +111,15 @@ RunService.Heartbeat:Connect(function(dt)
 				m.dir = m.dir:Lerp(want, math.min(1, m.cfg.turn * dt)).Unit
 			end
 			local step = m.dir * m.cfg.speed * dt
-			local hit = workspace:Raycast(pos, step + m.dir * 2, rayParams)
+			-- missiles fly through walls/floors; they only explode next to a player
+			local newPos = pos + step
+			local hit = false
+			for _, plr in Players:GetPlayers() do
+				local root = plr.Character and plr.Character:FindFirstChild("HumanoidRootPart")
+				if root and (root.Position - newPos).Magnitude <= HIT_RADIUS then hit = true break end
+			end
 			if hit then
-				explode(hit.Position, m.cfg.damage)
+				explode(newPos, m.cfg.damage)
 				done = true
 			else
 				part.CFrame = CFrame.lookAt(pos + step, pos + step + m.dir)

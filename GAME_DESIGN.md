@@ -81,3 +81,4 @@
 - Workspace.Turrets: 10 NASAMS-style launchers (tilted rack of 6 camo canisters on an outrigger trailer, radar dome), `Level` 1-5 by area (Common=1 ... Mythic=5), 2 per area (north/south edge).
 - Level scales range, fire rate, homing missile speed/turn and damage (8 → 36).
 - Spawned helicopters bob up and down client-side (HeliHover).
+- Launchers stand on the roof strips (y=45 body); missiles ignore walls/floor and only explode within 4 studs of a player.

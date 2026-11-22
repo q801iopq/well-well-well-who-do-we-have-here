@@ -6,8 +6,8 @@ local RunService = game:GetService("RunService")
 local turrets = workspace:WaitForChild("Turrets")
 
 local LEVELS = {
-	[1] = {range = 70,  interval = 4.5, speed = 35,  damage = 8,  turn = 2.4},
-	[2] = {range = 85,  interval = 3.8, speed = 50,  damage = 12, turn = 2.8},
+	[1] = {range = 70,  interval = 4.5, speed = 35,  damage = 8,  turn = 1.6},
+	[2] = {range = 85,  interval = 3.8, speed = 50,  damage = 12, turn = 2.0},
 	[3] = {range = 100, interval = 3.2, speed = 68,  damage = 18, turn = 2.4},
 	[4] = {range = 115, interval = 2.5, speed = 88,  damage = 26, turn = 2.8},
 	[5] = {range = 130, interval = 1.8, speed = 110, damage = 36, turn = 3.2},

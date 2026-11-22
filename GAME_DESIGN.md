@@ -70,3 +70,9 @@
 2. Upgrade shop (Speed / Health / Defense-flares, with max level + bar)
 3. Enemy helicopters and missiles (scaling by level)
 4. Level progression + UI (Figma)
+
+## Spawning & areas (v4)
+- 5 rarity tiers, 5 helicopters each: Common, Uncommon, Rare, Epic, Mythic (list order = income order).
+- 10 pads in Workspace.HeliSpawns, each with a `Rarity` attribute. Columns left→right (x=-480..-120): Mythic, Epic, Rare, Uncommon, Common (pads 1/6 Mythic, 5/10 Common).
+- `HeliSpawner` spawns a random model of the pad's rarity from ServerStorage.HeliModels; 120 s lifetime, 5 s respawn.
+- `AreaDisplay` (client) shows "<Rarity> Area" on Hud.Area using Workspace.AreaZones.
